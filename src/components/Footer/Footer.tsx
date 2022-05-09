@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
 
-const Copyright: React.FC = () => {
+const Copyright = (): JSX.Element => {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
@@ -16,7 +16,7 @@ const Copyright: React.FC = () => {
   )
 }
 
-export const Footer: React.FC = () => {
+const Footer = (): JSX.Element => {
   return (
     <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
       <Typography variant="h6" align="center" gutterBottom>
@@ -34,3 +34,4 @@ export const Footer: React.FC = () => {
     </Box>
   )
 }
+export default Footer

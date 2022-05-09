@@ -1,9 +1,20 @@
 import * as React from 'react'
 
 import { Routes, Route } from 'react-router-dom'
-import { HomePage, TeamPage, PageNotFound } from './pages'
-import { Header, Footer } from './components'
+import HomePage from 'pages/HomePage'
+import TeamPage from 'pages/TeamPage'
+import TeamsListPage from 'pages/TeamsListPage'
+import PageNotFound from 'pages/PageNotFound'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
+import {
+  TEAM_URL,
+  TEAMS_LIST_URL,
+  HOME_URL,
+  NOT_FOUND_URL,
+} from './settings.mjs'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
@@ -14,16 +25,17 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      <main>
+      <Container maxWidth="lg" style={{ paddingTop: 30 }}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path={HOME_URL} element={<HomePage />} />
+          <Route path={TEAMS_LIST_URL} element={<TeamsListPage />} />
           <Route
-            path="/my-team"
+            path={TEAM_URL}
             element={<TeamPage name="pepe" desc="Best team of the world" />}
           />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path={NOT_FOUND_URL} element={<PageNotFound />} />
         </Routes>
-      </main>
+      </Container>
       {/* Footer */}
       <Footer />
       {/* End footer */}

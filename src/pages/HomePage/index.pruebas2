@@ -1,0 +1,56 @@
+// import React from 'react';
+// import { render, screen } from '@testing-library/react';
+// import App from './App';
+
+// test('renders learn react link', () => {
+//   render(<App />);
+//   const linkElement = screen.getByText(/learn react/i);
+//   expect(linkElement).toBeInTheDocument();
+// });
+
+// import React from 'react'
+// import App from 'App'
+// import { Header, Footer } from 'components'
+// import { HomePage, PageNotFound, TeamPage, TeamsListPage } from 'pages'
+// import { render, screen } from '@testing-library/react'
+// import { MemoryRouter } from 'react-router'
+// import '@testing-library/jest-dom/extend-expect'
+
+// jest.mock('./pages/PageNotFound')
+
+// describe('Tests for App Router', () => {
+//   beforeEach(() => {
+//     jest.clearAllMocks()
+//     // Let TypeScript know that this thing is a mock
+//     const mockHeader = Header as jest.MockedFunction<typeof Header>
+//     const mockHomePage = HomePage as jest.MockedFunction<typeof HomePage>
+//     const mockTeamPage = TeamPage as jest.MockedFunction<typeof TeamPage>
+//     const mockTeamsListPage = TeamsListPage as jest.MockedFunction<
+//       typeof TeamsListPage
+//     >
+//     const mockFooter = Footer as jest.MockedFunction<typeof Footer>
+//     const mockPageNotFound = PageNotFound as jest.MockedFunction<
+//       typeof PageNotFound
+//     >
+//     // Provide our custom implementation here
+//     mockHeader.mockImplementation(() => <div>MockHeader</div>)
+//     mockHomePage.mockImplementation(() => <div>MockHomePage</div>)
+//     mockTeamPage.mockImplementation(() => <div>MockTeamPage</div>)
+//     mockTeamsListPage.mockImplementation(() => <div>MockTeamsListPage</div>)
+//     mockFooter.mockImplementation(() => <div>MockFooter</div>)
+//     mockPageNotFound.mockImplementation(() => <div>MockPageNotFound</div>)
+//   })
+
+//   test('Should link to /teams if button pressed', () => {
+//     render(
+//       <MemoryRouter initialEntries={['/teams']}>
+//         <App />
+//       </MemoryRouter>
+//     )
+
+//     expect(screen.getByText('MockHeader')).toBeInTheDocument()
+//     expect(screen.getByText('MockTeamsListPage')).toBeInTheDocument()
+//     expect(screen.getByText('MockFooter')).toBeInTheDocument()
+//   })
+
+// })

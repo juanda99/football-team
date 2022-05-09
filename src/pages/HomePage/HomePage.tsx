@@ -5,9 +5,10 @@ import Stack from '@mui/material/Stack'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import { Counter } from '../../features/counter/Counter'
+import { TEAM_URL, TEAMS_LIST_URL } from 'settings.mjs'
+// import { Counter } from 'features/counter/Counter'
 
-export const HomePage: React.FC = () => {
+const HomePage = (): JSX.Element => {
   return (
     <>
       <Box
@@ -42,16 +43,18 @@ export const HomePage: React.FC = () => {
             spacing={2}
             justifyContent="center"
           >
-            <Button variant="contained" component={Link} to={'/browse-teams'}>
+            <Button variant="contained" component={Link} to={TEAMS_LIST_URL}>
               Browse the teams
             </Button>
-            <Button variant="outlined" component={Link} to={'/team'}>
+            <Button variant="outlined" component={Link} to={TEAM_URL}>
               Show my team
             </Button>
           </Stack>
         </Container>
       </Box>
-      <Counter />
+      {/* <Counter /> */}
     </>
   )
 }
+
+export default HomePage

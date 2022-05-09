@@ -1,28 +1,20 @@
-// import React from 'react';
-// import { render, screen } from '@testing-library/react';
-// import App from './App';
-
-// test('renders learn react link', () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
-
 import React from 'react'
 import App from './App'
-import { Header, Footer } from './components'
-import { HomePage, PageNotFound, TeamPage } from './pages'
+import Header from 'components/Header'
+import Footer from 'components/Footer'
+import HomePage from 'pages/HomePage'
+import PageNotFound from 'pages/PageNotFound'
+import TeamPage from 'pages/TeamPage'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router'
-import '@testing-library/jest-dom/extend-expect'
+// import '@testing-library/jest-dom/extend-expect'
 
-jest.mock('./pages/HomePage/index')
-jest.mock('./components/Header/index')
-jest.mock('./components/Footer/index')
+jest.mock('./pages/HomePage/HomePage')
+jest.mock('./components/Header/Header')
+jest.mock('./components/Footer/Footer')
 jest.mock('./pages/PageNotFound')
-jest.mock('./pages/TeamPage/index')
-
-// jest.mock('./pages/TeamsListPage/index')
+jest.mock('./pages/TeamPage/TeamPage')
+// jest.mock('./pages/TeamsListPage/TeamsListPage')
 
 describe('Tests for App Router', () => {
   beforeEach(() => {
@@ -31,6 +23,9 @@ describe('Tests for App Router', () => {
     const mockHeader = Header as jest.MockedFunction<typeof Header>
     const mockHomePage = HomePage as jest.MockedFunction<typeof HomePage>
     const mockTeamPage = TeamPage as jest.MockedFunction<typeof TeamPage>
+    // const mockTeamsListPage = TeamsListPage as jest.MockedFunction<
+    //   typeof TeamsListPage
+    // >
     const mockFooter = Footer as jest.MockedFunction<typeof Footer>
     const mockPageNotFound = PageNotFound as jest.MockedFunction<
       typeof PageNotFound
@@ -39,6 +34,7 @@ describe('Tests for App Router', () => {
     mockHeader.mockImplementation(() => <div>MockHeader</div>)
     mockHomePage.mockImplementation(() => <div>MockHomePage</div>)
     mockTeamPage.mockImplementation(() => <div>MockTeamPage</div>)
+    // mockTeamsListPage.mockImplementation(() => <div>MockTeamsListPage</div>)
     mockFooter.mockImplementation(() => <div>MockFooter</div>)
     mockPageNotFound.mockImplementation(() => <div>MockPageNotFound</div>)
   })
@@ -66,6 +62,18 @@ describe('Tests for App Router', () => {
     expect(screen.getByText('MockTeamPage')).toBeInTheDocument()
     expect(screen.getByText('MockFooter')).toBeInTheDocument()
   })
+
+  // test('Should render Page header, TeamsListPage and Footer on /teams route', () => {
+  //   render(
+  //     <MemoryRouter initialEntries={['/teams']}>
+  //       <App />
+  //     </MemoryRouter>
+  //   )
+
+  //   expect(screen.getByText('MockHeader')).toBeInTheDocument()
+  //   expect(screen.getByText('MockTeamsListPage')).toBeInTheDocument()
+  //   expect(screen.getByText('MockFooter')).toBeInTheDocument()
+  // })
 
   test('Should render Page header, Footer and PageNotFound for invalid route', () => {
     render(

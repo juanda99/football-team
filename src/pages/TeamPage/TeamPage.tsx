@@ -5,7 +5,7 @@ interface Props {
   desc?: string
 }
 
-export const TeamPage: React.FC<Props> = ({ name, desc }) => {
+const TeamPage = ({ name, desc }: Props): JSX.Element => {
   return (
     <>
       <h1>{name}</h1>
@@ -13,3 +13,5 @@ export const TeamPage: React.FC<Props> = ({ name, desc }) => {
     </>
   )
 }
+
+export default TeamPage
