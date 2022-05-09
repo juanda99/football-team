@@ -18,8 +18,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm test
-      # deploy app to vercel
+      - name: Install dependencies
+        run: npm install
+      - name: Execute tests
+        run: npm test
       - name: deploy site to vercel
         uses: amondnet/vercel-action@v20
         with:
