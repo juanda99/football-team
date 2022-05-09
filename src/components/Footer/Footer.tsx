@@ -28,7 +28,7 @@ const Footer = (): JSX.Element => {
         color="text.secondary"
         component="p"
       >
-        Juan Daniel Burró Aláez
+        Juan Daniel Burró Aláez - May, 2022
       </Typography>
       <Copyright />
     </Box>
