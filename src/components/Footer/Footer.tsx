@@ -20,7 +20,7 @@ const Footer = (): JSX.Element => {
   return (
     <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
       <Typography variant="h6" align="center" gutterBottom>
-        Challenge ADIDAS
+        ADIDAS Challenge
       </Typography>
       <Typography
         variant="subtitle1"
