@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`LoadingProgress component renders correctly 1`] = `
 <div
   className="MuiBox-root css-p6748q"
 >

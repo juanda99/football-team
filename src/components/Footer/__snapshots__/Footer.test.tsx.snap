@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component renders correctly 1`] = `
+<footer
+  className="MuiBox-root css-16ybtzv"
+>
+  <h6
+    className="MuiTypography-root MuiTypography-h6 MuiTypography-alignCenter MuiTypography-gutterBottom css-tcrtuv-MuiTypography-root"
+  >
+    Adidas Challenge
+  </h6>
+  <p
+    className="MuiTypography-root MuiTypography-subtitle1 MuiTypography-alignCenter css-1xatcrf-MuiTypography-root"
+  >
+    Juan Daniel Burró Aláez - May, 2022
+  </p>
+  <p
+    className="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter css-1vl95ex-MuiTypography-root"
+  >
+    Copyright © 
+    <a
+      className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1cghntr-MuiTypography-root-MuiLink-root"
+      href="https://www.adidas.es/"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      Adidas
+    </a>
+     
+    2022
+    .
+  </p>
+</footer>
+`;
