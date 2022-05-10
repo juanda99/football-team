@@ -3,5 +3,4 @@
     "enabled": false,
     "silent": true
   },
-  "builds": [{ "src": "./build", "use": "@vercel/static" }]
 }
