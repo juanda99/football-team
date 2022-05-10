@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# Football challenge
+
+## Tests
+[![codecov](https://codecov.io/gh/juanda99/football-team/branch/main/graph/badge.svg?token=KLVZYIV6ZZ)](https://codecov.io/gh/juanda99/football-team)
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
