@@ -20,8 +20,12 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm install
-      - name: Execute tests
-        run: npm test
+      - name: Run the tests and generate coverage report
+        run: npm test -- --coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          verbose: true # optional (default = false)
       - name: Compile
         run: npm run build
       - name: deploy site to vercel
@@ -31,4 +35,3 @@ jobs:
           vercel-org-id: ${{ secrets.ORG_ID}} #Required
           vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
           vercel-args: '--prod --confirm'
-          # working-directory: build
