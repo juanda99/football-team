@@ -5,7 +5,7 @@
 
 ## Deploy
 
-![Vercel](https://football-team.vercel.app/?app=football-team)
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=football-team)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
