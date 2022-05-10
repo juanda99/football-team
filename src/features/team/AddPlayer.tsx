@@ -2,9 +2,7 @@ import React from 'react'
 
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { TeamPlayer } from 'types'
-import IconButton from '@mui/material/IconButton'
 import Button from '@mui/material/Button'
-import FavoriteIcon from '@mui/icons-material/Favorite'
 import { addPlayer, selectPlayers } from './teamSlice'
 
 type AppProps = {
