@@ -13,6 +13,7 @@ import { AddPlayer, RemovePlayer } from 'features/team'
 
 type AppProps = {
   players: TeamPlayer[]
+  hidePosition?: boolean
 }
 
 const pos: Record<string, string> = {
@@ -53,49 +54,51 @@ interface EnhancedTableProps {
   ) => void
   order: Order
   orderBy: string
+  hidePosition: boolean
 }
 
 interface HeadCell {
   id: keyof TeamPlayer | 'actions'
   label: string
   sortable: boolean
+  hiden?: boolean
 }
 
-const headCells: readonly HeadCell[] = [
-  {
-    id: 'firstname',
-    label: 'Name',
-    sortable: true,
-  },
-  {
-    id: 'lastname',
-    label: 'Surname',
-    sortable: true,
-  },
-  {
-    id: 'img',
-    label: 'Image',
-    sortable: false,
-  },
-  {
-    id: 'position',
-    label: 'Position',
-    sortable: true,
-  },
-  {
-    id: 'country',
-    label: 'Country',
-    sortable: true,
-  },
-  {
-    id: 'actions',
-    label: 'Actions',
-    sortable: false,
-  },
-]
-
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { order, orderBy, onRequestSort } = props
+  const { order, orderBy, onRequestSort, hidePosition } = props
+  const headCells: readonly HeadCell[] = [
+    {
+      id: 'firstname',
+      label: 'Name',
+      sortable: true,
+    },
+    {
+      id: 'lastname',
+      label: 'Surname',
+      sortable: true,
+    },
+    {
+      id: 'img',
+      label: 'Image',
+      sortable: false,
+    },
+    {
+      id: 'position',
+      label: 'Position',
+      sortable: true,
+      hiden: hidePosition,
+    },
+    {
+      id: 'country',
+      label: 'Country',
+      sortable: true,
+    },
+    {
+      id: 'actions',
+      label: 'Actions',
+      sortable: false,
+    },
+  ]
   const createSortHandler =
     (property: keyof TeamPlayer) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property)
@@ -104,37 +107,43 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   return (
     <TableHead>
       <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            {headCell.sortable && headCell.id !== 'actions' ? (
-              <TableSortLabel
-                active={orderBy === headCell.id}
-                direction={orderBy === headCell.id ? order : 'asc'}
-                onClick={createSortHandler(headCell.id)}
-              >
-                {headCell.label}
-                {orderBy === headCell.id ? (
-                  <Box component="span" sx={visuallyHidden}>
-                    {order === 'desc'
-                      ? 'sorted descending'
-                      : 'sorted ascending'}
-                  </Box>
-                ) : null}
-              </TableSortLabel>
-            ) : (
-              <>{headCell.label}</>
-            )}
-          </TableCell>
-        ))}
+        {headCells
+          .filter((headCell) => !headCell?.hiden)
+          .map((headCell) => (
+            <TableCell
+              key={headCell.id}
+              sortDirection={orderBy === headCell.id ? order : false}
+              style={{ width: 150 }}
+            >
+              {headCell.sortable && headCell.id !== 'actions' ? (
+                <TableSortLabel
+                  active={orderBy === headCell.id}
+                  direction={orderBy === headCell.id ? order : 'asc'}
+                  onClick={createSortHandler(headCell.id)}
+                >
+                  {headCell.label}
+                  {orderBy === headCell.id ? (
+                    <Box component="span" sx={visuallyHidden}>
+                      {order === 'desc'
+                        ? 'sorted descending'
+                        : 'sorted ascending'}
+                    </Box>
+                  ) : null}
+                </TableSortLabel>
+              ) : (
+                <>{headCell.label}</>
+              )}
+            </TableCell>
+          ))}
       </TableRow>
     </TableHead>
   )
 }
 
-const PlayersGrid = ({ players }: AppProps): JSX.Element => {
+const PlayersGrid = ({
+  players,
+  hidePosition = false,
+}: AppProps): JSX.Element => {
   const [order, setOrder] = React.useState<Order>('asc')
   const [orderBy, setOrderBy] = React.useState<keyof TeamPlayer>('lastname')
 
@@ -151,11 +160,16 @@ const PlayersGrid = ({ players }: AppProps): JSX.Element => {
     <>
       {players.length > 0 ? (
         <TableContainer>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table
+            sx={{ minWidth: 650 }}
+            aria-label="simple table"
+            padding="normal"
+          >
             <EnhancedTableHead
               order={order}
               orderBy={orderBy}
               onRequestSort={handleRequestSort}
+              hidePosition={hidePosition}
             />
             <TableBody>
               {players
@@ -185,7 +199,7 @@ const PlayersGrid = ({ players }: AppProps): JSX.Element => {
                           }}
                         />
                       </TableCell>
-                      <TableCell>{pos[position]}</TableCell>
+                      {!hidePosition && <TableCell>{pos[position]}</TableCell>}
                       <TableCell>{country}</TableCell>
                       <TableCell>
                         <AddPlayer player={player} />

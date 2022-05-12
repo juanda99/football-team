@@ -25,28 +25,28 @@ const TeamPage = (): JSX.Element => {
         maxCountryPlayers={4}
       />
       <h2>Goalkeeper</h2>
-      <PlayersGrid players={playersByPosition.G} />
+      <PlayersGrid players={playersByPosition.G} hidePosition={true} />
       <PlayerWarnings
         players={playersByPosition.G}
         minPlayers={2}
         text="goalkeeper players"
       />
       <h2>Defender</h2>
-      <PlayersGrid players={playersByPosition.D} />
+      <PlayersGrid players={playersByPosition.D} hidePosition={true} />
       <PlayerWarnings
         players={playersByPosition.D}
         minPlayers={4}
         text="defender players"
       />
       <h2>Midfielder</h2>
-      <PlayersGrid players={playersByPosition.M} />
+      <PlayersGrid players={playersByPosition.M} hidePosition={true} />
       <PlayerWarnings
         players={playersByPosition.M}
         minPlayers={4}
         text="midfielder players"
       />
       <h2>Forward</h2>
-      <PlayersGrid players={playersByPosition.F} />
+      <PlayersGrid players={playersByPosition.F} hidePosition={true} />
       <PlayerWarnings
         players={playersByPosition.F}
         minPlayers={2}
