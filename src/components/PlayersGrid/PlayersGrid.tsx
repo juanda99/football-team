@@ -3,7 +3,6 @@ import Table from '@mui/material/Table'
 import Box from '@mui/material/Box'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
-import Paper from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableSortLabel from '@mui/material/TableSortLabel'
@@ -149,58 +148,57 @@ const PlayersGrid = ({ players }: AppProps): JSX.Element => {
   }
 
   return (
-    <Paper
-      style={{
-        overflow: 'auto',
-        height: '95vh',
-      }}
-    >
-      <TableContainer>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <EnhancedTableHead
-            order={order}
-            orderBy={orderBy}
-            onRequestSort={handleRequestSort}
-          />
-          <TableBody>
-            {players
-              .slice()
-              .sort(getComparator(order, orderBy))
-              .map((player) => {
-                const { id, firstname, lastname, img, position, country } =
-                  player
-                return (
-                  <TableRow
-                    key={id}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {firstname}
-                    </TableCell>
-                    <TableCell>{lastname}</TableCell>
-                    <TableCell>
-                      <img
-                        alt={`${firstname}-${lastname}`}
-                        src={img}
-                        onError={({ currentTarget }) => {
-                          currentTarget.onerror = null // prevents looping
-                          currentTarget.src = `${process.env.PUBLIC_URL}no-image.png`
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell>{pos[position]}</TableCell>
-                    <TableCell>{country}</TableCell>
-                    <TableCell>
-                      <AddPlayer player={player} />
-                      <RemovePlayer player={{ ...player }} />
-                    </TableCell>
-                  </TableRow>
-                )
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Paper>
+    <>
+      {players.length > 0 ? (
+        <TableContainer>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <EnhancedTableHead
+              order={order}
+              orderBy={orderBy}
+              onRequestSort={handleRequestSort}
+            />
+            <TableBody>
+              {players
+                .slice()
+                .sort(getComparator(order, orderBy))
+                .map((player) => {
+                  const { id, firstname, lastname, img, position, country } =
+                    player
+                  return (
+                    <TableRow
+                      key={id}
+                      sx={{
+                        '&:last-child td, &:last-child th': { border: 0 },
+                      }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {firstname}
+                      </TableCell>
+                      <TableCell>{lastname}</TableCell>
+                      <TableCell>
+                        <img
+                          alt={`${firstname}-${lastname}`}
+                          src={img}
+                          onError={({ currentTarget }) => {
+                            currentTarget.onerror = null // prevents looping
+                            currentTarget.src = `${process.env.PUBLIC_URL}no-image.png`
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell>{pos[position]}</TableCell>
+                      <TableCell>{country}</TableCell>
+                      <TableCell>
+                        <AddPlayer player={player} />
+                        <RemovePlayer player={{ ...player }} />
+                      </TableCell>
+                    </TableRow>
+                  )
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      ) : null}
+    </>
   )
 }
 

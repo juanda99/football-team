@@ -25,14 +25,11 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      <Container maxWidth="lg" style={{ paddingTop: 30 }}>
+      <Container maxWidth="md" style={{ paddingTop: 30 }}>
         <Routes>
           <Route path={HOME_URL} element={<HomePage />} />
           <Route path={TEAMS_LIST_URL} element={<TeamsListPage />} />
-          <Route
-            path={TEAM_URL}
-            element={<TeamPage name="pepe" desc="Best team of the world" />}
-          />
+          <Route path={TEAM_URL} element={<TeamPage />} />
           <Route path={NOT_FOUND_URL} element={<PageNotFound />} />
         </Routes>
       </Container>

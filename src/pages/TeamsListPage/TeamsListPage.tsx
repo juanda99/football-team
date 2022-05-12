@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFetch } from 'hooks'
 import PlayersGrid from 'components/PlayersGrid'
+import Menu from 'components/Menu'
 import { API_USER, API_TOKEN } from 'settings.mjs'
 import { ApiPlayers } from 'types'
 import Autocomplete from 'components/Autocomplete'
@@ -14,8 +15,11 @@ interface FetchProps {
 }
 
 const TeamsListPage = (): JSX.Element => {
-  const [countryId, setCountryId] = useState<number | null>()
+  const [country, setCountry] = useState<string>(
+    () => localStorage.getItem('country') || 'Spain'
+  )
 
+  const countryId = countries.find((c) => c.name === country)?.id
   // api.soccersapi.com/v2.2/teams/?user=${apiUser}&token=${apiToken}&t=squad&id=${countryId}
   //  https://api.soccersapi.com/v2.2/teams/?user=juandacorreo&token=7283c63298d92adfccfffb26bead8f7c&t=squad&id=5
   const playersUrl =
@@ -25,9 +29,13 @@ const TeamsListPage = (): JSX.Element => {
   const { status, error, data }: FetchProps = useFetch(playersUrl)
 
   function handleCountryChange(country: string) {
-    const idCountry = countries.find((c) => c.name === country)?.id
-    setCountryId(idCountry)
+    setCountry(country)
   }
+
+  useEffect(() => {
+    // storing countryId from localstorage
+    if (country) localStorage.setItem('country', country)
+  }, [country])
 
   const options = countries.map((c) => c.name)
 
@@ -37,20 +45,27 @@ const TeamsListPage = (): JSX.Element => {
       firstname,
       lastname,
       img,
-      country: { name: country },
+      // hack get country from  selected country as some players have no country!
+      // country: { name: country },
     } = player
     return {
       id: Number(id),
       firstname,
       lastname,
       img,
-      country: country || '',
+      country,
       position,
     }
   })
   return (
     <main>
-      <Autocomplete options={options} onChange={handleCountryChange} />
+      <Menu />
+      <h1>Select players!</h1>
+      <Autocomplete
+        options={options}
+        value={country}
+        onChange={handleCountryChange}
+      />
       {status === 'fetching' && <LoadingProgress />}
       {status === 'error' && <div>{error}</div>}
       {status === 'fetched' && <PlayersGrid players={players} />}

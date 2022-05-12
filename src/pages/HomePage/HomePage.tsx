@@ -1,16 +1,13 @@
 import React from 'react'
-import Button from '@mui/material/Button'
-import { Link } from 'react-router-dom'
-import Stack from '@mui/material/Stack'
+
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import { TEAM_URL, TEAMS_LIST_URL } from 'settings.mjs'
-// import { Counter } from 'features/counter/Counter'
+import Menu from 'components/Menu'
 
 const HomePage = (): JSX.Element => {
   return (
-    <>
+    <main>
       <Box
         sx={{
           bgcolor: 'background.paper',
@@ -37,23 +34,35 @@ const HomePage = (): JSX.Element => {
             Browse through the list of teams to choose your players. Be aware of
             the requirements!
           </Typography>
-          <Stack
-            sx={{ pt: 4 }}
-            direction="row"
-            spacing={2}
-            justifyContent="center"
+          <Menu />
+
+          <Typography
+            component="h2"
+            variant="h3"
+            align="center"
+            color="text.primary"
+            gutterBottom
           >
-            <Button variant="contained" component={Link} to={TEAMS_LIST_URL}>
-              Browse the teams
-            </Button>
-            <Button variant="outlined" component={Link} to={TEAM_URL}>
-              Show my team
-            </Button>
-          </Stack>
+            Requirements
+          </Typography>
+          <Typography variant="h6" component="ul">
+            <ul>
+              <li>Players are selected from national teams.</li>
+              <li>Maximum of 4 players from the same team.</li>
+              <li>Team size limit to 16 players plus the coach.</li>
+              <li>Each team must have at least:</li>
+              <ul>
+                <li>1 coach</li>
+                <li>2 goalkeepers</li>
+                <li>4 defenders</li>
+                <li>4 midfielders</li>
+                <li>2 attackers</li>
+              </ul>
+            </ul>
+          </Typography>
         </Container>
       </Box>
-      {/* <Counter /> */}
-    </>
+    </main>
   )
 }
 

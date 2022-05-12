@@ -1,54 +1,56 @@
 # Football challenge
 
+## Libraries
+
+- React, create-react-app as boilerplate and redux to manage state (@reduxjs/toolkit)
+- Typescript
+- [Material-ui](https://mui.com/) as react component library
+- jest, @testing-library and react-test-renderer for testing
+
 ## Tests
-[![codecov](https://codecov.io/gh/juanda99/football-team/branch/main/graph/badge.svg?token=KLVZYIV6ZZ)](https://codecov.io/gh/juanda99/football-team)
 
-## Deploy
+- Unit and some integration tests.
+- Using github actions, test statistics are send to [codecov](https://about.codecov.io/)
 
-![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=football-team)
+  [![codecov](https://codecov.io/gh/juanda99/football-team/branch/main/graph/badge.svg?token=KLVZYIV6ZZ)](https://codecov.io/gh/juanda99/football-team)
 
+## Automated deployment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Using github actions the project is deployed to [Vercel](https://vercel.com/) under two conditions:
+  - `npm test` run without errors
+  - `npm build` run without warnings or errors
+- Deployment website url: https://football-team.vercel.app/
 
-## Available Scripts
+## Browser data persistency.
 
-In the project directory, you can run:
+- Redux state (selected team of players) is persisted using local storage.
+- Last country team selection is also persisted (not send to the state as is just needed in one page) using local storage.
 
-### `npm start`
+## API Calls
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- I use `soccersapi.com`. It has certain drawbacks that I detail below:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  - API endpoint to get a list of coaches is not available for free, so it's mocked up.
+  - Some data is not available for some players:
+    - The country for example, despite doing searches by country (hacked)
+    - The player picture (404 error, "fixed" with onError image prop)
+    - Player position
 
-### `npm test`
+- API endpoint to get players from countries is cached (using a custom hook see https://raw.githubusercontent.com/juanda99/football-team/main/src/hooks.js):
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
+export const useFetch = (url) => {
+  // With useRef, we can set and retrieve mutable values at ease and its value persists throughout the component’s lifecycle.
+  // other option,  use  useSWR or save state in localStorage (enhancemment)
+  const cache = useRef({})
+...
+```
 
-### `npm run build`
+- API calls to get a list of team country data is not likely to change and it is statically generated via `npm prebuild` script.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Enhancements
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Cache API endpoint to get players cache api during all the session, not just during the component lifecycle.
+- I've considered a good design for usability to be able to choose as many players as you want, and then validate the team (eg. remove extra players) inside "Show my team" page view. However some enhancements could be done:
+  - Some info about current team status (missing players to complete team...) inside the "Select players" page view.
+  - A general state about the team to mark it as valid or invalid.

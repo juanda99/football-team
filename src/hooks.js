@@ -2,7 +2,7 @@ import { useEffect, useRef, useReducer } from 'react'
 
 export const useFetch = (url) => {
   // With useRef, we can set and retrieve mutable values at ease and its value persists throughout the component’s lifecycle.
-  // other option,  use  useSWR
+  // other option,  use  useSWR or save state in localStorage (enhancemment)
   const cache = useRef({})
 
   const initialState = {

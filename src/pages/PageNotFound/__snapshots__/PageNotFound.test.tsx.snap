@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage component renders correctly 1`] = `
+<main>
+  <h1>
+    Oops! Page not found.
+  </h1>
+  <h2>
+    Suggestions:
+  </h2>
+  <div>
+    MockMenu
+  </div>
+</main>
+`;

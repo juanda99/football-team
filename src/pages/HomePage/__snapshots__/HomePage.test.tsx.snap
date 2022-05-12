@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage component renders correctly 1`] = `
+<main>
+  <div
+    className="MuiBox-root css-10m0cap"
+  >
+    <div
+      className="MuiContainer-root MuiContainer-maxWidthSm css-cuefkz-MuiContainer-root"
+    >
+      <h1
+        className="MuiTypography-root MuiTypography-h2 MuiTypography-alignCenter MuiTypography-gutterBottom css-10759ka-MuiTypography-root"
+      >
+        My team
+      </h1>
+      <p
+        className="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-paragraph css-17rfbpd-MuiTypography-root"
+      >
+        Browse through the list of teams to choose your players. Be aware of the requirements!
+      </p>
+      <div>
+        MockMenu
+      </div>
+      <h2
+        className="MuiTypography-root MuiTypography-h3 MuiTypography-alignCenter MuiTypography-gutterBottom css-14v45o4-MuiTypography-root"
+      >
+        Requirements
+      </h2>
+      <ul
+        className="MuiTypography-root MuiTypography-h6 css-2ulfj5-MuiTypography-root"
+      >
+        <ul>
+          <li>
+            Players are selected from national teams.
+          </li>
+          <li>
+            Maximum of 4 players from the same team.
+          </li>
+          <li>
+            Team size limit to 16 players plus the coach.
+          </li>
+          <li>
+            Each team must have at least:
+          </li>
+          <ul>
+            <li>
+              1 coach
+            </li>
+            <li>
+              2 goalkeepers
+            </li>
+            <li>
+              4 defenders
+            </li>
+            <li>
+              4 midfielders
+            </li>
+            <li>
+              2 attackers
+            </li>
+          </ul>
+        </ul>
+      </ul>
+    </div>
+  </div>
+</main>
+`;
