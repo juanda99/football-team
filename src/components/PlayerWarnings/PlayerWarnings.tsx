@@ -29,7 +29,9 @@ const PlayerWarnings = ({
   return (
     <Stack sx={{ width: '100%' }} spacing={2}>
       {warnMinPlayers && (
-        <Alert severity="error">{`You need at least ${minPlayers} ${text}`}</Alert>
+        <Alert severity="error">{`You need at least ${
+          minPlayers - players.length
+        } ${text} more`}</Alert>
       )}
     </Stack>
   )

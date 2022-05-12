@@ -10,7 +10,9 @@ describe('Tests for PlayerWarnings', () => {
   })
 
   test('Should display warning if not enough players', () => {
-    render(<Component players={goodTeam} minPlayers={17} text="test" />)
-    expect(screen.getByText('You need at least 17 test')).toBeInTheDocument()
+    render(<Component players={goodTeam} minPlayers={17} text="player" />)
+    expect(
+      screen.getByText('You need at least 1 player more')
+    ).toBeInTheDocument()
   })
 })
