@@ -7,10 +7,12 @@ import { TeamPlayer } from 'types'
 import PlayerWarnings from 'components/PlayerWarnings'
 import TeamWarnings from 'components/TeamWarnings'
 import { getPlayersByPosition } from 'lib/utils'
+import { SelectCoach } from 'features/team/SelectCoach'
 
 const TeamPage = (): JSX.Element => {
   const players: Record<string, TeamPlayer> = useAppSelector(selectPlayers)
   const playersByPosition = getPlayersByPosition(Object.values(players))
+
   return (
     <main>
       <Menu />
@@ -52,6 +54,8 @@ const TeamPage = (): JSX.Element => {
         minPlayers={2}
         text="forwared players"
       />
+      <h2>Coach</h2>
+      <SelectCoach />
     </main>
   )
 }

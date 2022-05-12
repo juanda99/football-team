@@ -7,6 +7,11 @@ export interface TeamPlayer {
   country: string
 }
 
+export interface Coach {
+  id: number
+  name: string
+}
+
 /* http://json2ts.com/ generate typescript interfaces from json */
 
 interface Country {

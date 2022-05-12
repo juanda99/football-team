@@ -27,17 +27,13 @@ export const teamSlice = createSlice({
     removePlayer: (state, action: PayloadAction<number>) => {
       delete state.players[action.payload]
     },
-    addCoach: (state, action: PayloadAction<string>) => {
+    setCoach: (state, action: PayloadAction<string>) => {
       state.coach = action.payload
-    },
-    removeCoach: (state) => {
-      state.coach = ''
     },
   },
 })
 
-export const { addPlayer, removePlayer, addCoach, removeCoach } =
-  teamSlice.actions
+export const { addPlayer, removePlayer, setCoach } = teamSlice.actions
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

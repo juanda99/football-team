@@ -2,8 +2,7 @@ import teamReducer, {
   TeamState,
   addPlayer,
   removePlayer,
-  addCoach,
-  removeCoach,
+  setCoach,
 } from './teamSlice'
 
 import { TeamPlayer } from 'types'
@@ -27,10 +26,6 @@ describe('team reducer', () => {
     },
     coach: '',
   }
-  const initialStateWithCoach: TeamState = {
-    players: {},
-    coach: 'currentCoach',
-  }
 
   it('should handle initial state', () => {
     expect(teamReducer(undefined, { type: 'unknown' })).toEqual({
@@ -49,13 +44,8 @@ describe('team reducer', () => {
     expect(actual.players).toEqual({})
   })
 
-  it('should handle addCoach', () => {
-    const actual = teamReducer(initialState, addCoach('currentCoach'))
+  it('should handle setCoach', () => {
+    const actual = teamReducer(initialState, setCoach('currentCoach'))
     expect(actual.coach).toEqual('currentCoach')
-  })
-
-  it('should handle removeCoach', () => {
-    const actual = teamReducer(initialStateWithCoach, removeCoach())
-    expect(actual.coach).toEqual('')
   })
 })
