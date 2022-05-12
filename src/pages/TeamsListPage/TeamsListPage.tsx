@@ -54,7 +54,7 @@ const TeamsListPage = (): JSX.Element => {
       lastname,
       img,
       country,
-      position,
+      position: position || 'D', // default to defender as API sometimes does not return position
     }
   })
   return (
