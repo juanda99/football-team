@@ -56,7 +56,7 @@ const HomePage = (): JSX.Element => {
                 <li>2 goalkeepers</li>
                 <li>4 defenders</li>
                 <li>4 midfielders</li>
-                <li>2 attackers</li>
+                <li>2 forwards</li>
               </ul>
             </ul>
           </Typography>

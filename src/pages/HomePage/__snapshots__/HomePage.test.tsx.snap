@@ -56,7 +56,7 @@ exports[`HomePage component renders correctly 1`] = `
               4 midfielders
             </li>
             <li>
-              2 attackers
+              2 forwards
             </li>
           </ul>
         </ul>
